@@ -5,7 +5,7 @@ import 'package:dailyforecast/src/features/weather_forecast/domain/entities/loca
 import 'package:dailyforecast/src/features/weather_forecast/domain/repository/locallocation_repo.dart';
 
 class LocalLocationRepositoryImpl implements LocalLocationRepository {
-  final LocalDataSource _localDataSource;
+  final LocalLocationDataSource _localDataSource;
   LocalLocationRepositoryImpl(this._localDataSource);
 
   @override

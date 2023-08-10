@@ -1,27 +1,22 @@
-
 import 'package:dailyforecast/main.dart';
 import 'package:dailyforecast/src/features/weather_forecast/data/models/locallocation_model.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'dao.dart';
 
-abstract class LocalDataSource {
+abstract class LocalLocationDataSource {
   Future<bool> initDb();
   Future<List<LocalLocationModel>> getAllLocalSavedLocations();
   Future saveLocation(LocalLocationModel location);
   Future deleteSavedLocation(int index);
 }
 
-class LocalDataSourceImpl implements LocalDataSource {
+class LocalLocationDataSourceImpl implements LocalLocationDataSource {
   final _kTaskBox = appEnv.envConfig.locationDb;
 
   @override
   Future<bool> initDb() async {
     try {
-      final appDocumentDir = await getApplicationDocumentsDirectory();
-      Hive.init(appDocumentDir.path);
-
       Hive.registerAdapter(LocalLocationDAOAdapter());
       await Hive.openBox<LocalLocationDAO>(_kTaskBox);
       return true;
