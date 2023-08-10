@@ -6,9 +6,9 @@ abstract class RemoteWeatherDataSource {
   Future<http.Response> getweatherForecastList({required num locationId});
 }
 
-class RemoteDataSourceImpl implements RemoteWeatherDataSource {
+class RemoteWeatherDataSourceImpl implements RemoteWeatherDataSource {
   final http.Client _client;
-  RemoteDataSourceImpl(this._client);
+  RemoteWeatherDataSourceImpl(this._client);
 
   final String baseUrl = appEnv.envConfig.baseUrl;
   final String appId = appEnv.envConfig.weatherApiKey;
