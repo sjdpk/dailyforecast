@@ -1,6 +1,7 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
 import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/config/utils/datetime.dart';
+import 'package:dailyforecast/src/core/textstyle.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/forecast_card_widget.dart';
@@ -16,10 +17,7 @@ class WeatherForeCastScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: const Icon(Icons.arrow_back_ios, color: primaryColor)),
-        title: const Text(
-          Language.lblForecastReport,
-          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: labelTextSize),
-        ),
+        title: const Text(Language.lblForecastReport, style: primaryTextStyle),
         backgroundColor: backgroundColor,
       ),
       body: ListView(
@@ -29,7 +27,10 @@ class WeatherForeCastScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(Language.lblToday, style: TextStyle(color: primaryColor)),
-              Text(dateTimeUtils.formatDate(DateTime.now()), style: const TextStyle(color: primaryColor))
+              Text(
+                dateTimeUtils.formatDate(DateTime.now()),
+                style: const TextStyle(color: primaryColor),
+              )
             ],
           ),
           const SizedBox(height: 30),

@@ -1,5 +1,6 @@
-import 'package:dailyforecast/src/config/constants/colors.dart';
 import 'package:dailyforecast/src/config/constants/language.dart';
+import 'package:dailyforecast/src/config/routes/routes.dart';
+import 'package:dailyforecast/src/core/textstyle.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/favourite_location_widget.dart';
@@ -12,9 +13,7 @@ import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/weather_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../widgets/errorlocpermission_widget.dart';
-import 'forecast_screen.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -56,18 +55,20 @@ class WeatherScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(Language.lblStatistics, style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
+                    const Text(Language.lblStatistics, style: primaryTextStyle),
                     GestureDetector(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeatherForeCastScreen())),
-                      child: const Text(
-                        Language.lblViewReport,
-                        style: TextStyle(color: iconColor, fontWeight: FontWeight.bold),
-                      ),
+                      onTap: () => Navigator.popAndPushNamed(context, RoutesList.forecastScreen),
+                      child: const Text(Language.lblViewReport, style: secondaryTextStyle),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
-                StatisticDataWidget(feelsLike: state.weatherEntity.fLike ?? 0, pressure: state.weatherEntity.pressure ?? 0, humidity: state.weatherEntity.humidity ?? 0, wind: state.weatherEntity.windSpeed ?? 0),
+                StatisticDataWidget(
+                  feelsLike: state.weatherEntity.fLike ?? 0,
+                  pressure: state.weatherEntity.pressure ?? 0,
+                  humidity: state.weatherEntity.humidity ?? 0,
+                  wind: state.weatherEntity.windSpeed ?? 0,
+                ),
                 const SizedBox(height: 20),
               ],
             );
