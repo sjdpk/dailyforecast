@@ -39,6 +39,23 @@ Add your API key as follows (as: `env example` folder):
 #### Running the App
 `flutter run`
 
+### Screenshots
+<table>
+  <tr>
+    <td>Weather Screen</td>
+     <td> Forecast Screen</td>
+     <td>Search Location</td>
+     <td>Bookmark Location</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/weather.jpg" width=180></td>
+    <td><img src="screenshots/forecast.jpg" width=180></td>
+    <td><img src="screenshots/search.jpg" width=180></td>
+    <td><img src="screenshots/fav.jpg" width=180></td>
+      
+  </tr>
+ </table>
+
 
 ### Bug Reports and Feature Requests
 
