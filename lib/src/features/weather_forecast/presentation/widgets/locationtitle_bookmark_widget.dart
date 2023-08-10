@@ -1,7 +1,10 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
 import 'package:dailyforecast/src/config/utils/datetime.dart';
+import 'package:dailyforecast/src/features/weather_forecast/domain/entities/locallocation.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/weather.dart';
+import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/locallocation/local_location_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationtitleBookmarkWidget extends StatelessWidget {
   final WeatherEntity weatherEntity;
@@ -27,7 +30,17 @@ class LocationtitleBookmarkWidget extends StatelessWidget {
             ),
           ],
         ),
-        IconButton(onPressed: () async {}, icon: const Icon(Icons.bookmark_outlined, size: 30))
+        IconButton(
+            onPressed: () async {
+              final location = LocalLocationEntity(
+                name: weatherEntity.cityName ?? "Favourite Location",
+                icon: weatherEntity.weatherIcon,
+                latitude: weatherEntity.lat!,
+                longitude: weatherEntity.lon!,
+              );
+              context.read<LocalLocationBloc>().add(SaveLocalLocationEvent(localLocations: location));
+            },
+            icon: const Icon(Icons.bookmark_outlined, size: 30))
       ],
     );
   }

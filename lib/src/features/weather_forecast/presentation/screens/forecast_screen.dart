@@ -12,12 +12,10 @@ class WeatherForeCastScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
       appBar: AppBar(
-        // toolbarHeight: 0,
         leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: const Icon(Icons.arrow_back_ios, color: primaryColor)),
         title: const Text(
-          "Forecast",
+          "Forecast Reports",
           style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: labelTextSize),
         ),
         backgroundColor: backgroundColor,

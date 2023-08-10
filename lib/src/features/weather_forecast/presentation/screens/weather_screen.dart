@@ -1,6 +1,7 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
+import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/favourite_location_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/image_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/locationtitle_bookmark_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/search_location_widget.dart';
@@ -22,11 +23,7 @@ class WeatherScreen extends StatelessWidget {
     context.read<WeatherBloc>().add(const GetWeatherEvents(lat: 27.6545, lon: 85.6788));
 
     return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        toolbarHeight: 0,
-        backgroundColor: backgroundColor,
-      ),
+      appBar: AppBar(toolbarHeight: 0),
       body: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoadingState) {
@@ -54,6 +51,7 @@ class WeatherScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
+                const FavouritesLocationWidget(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -61,7 +59,7 @@ class WeatherScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeatherForeCastScreen())),
                       child: const Text(
-                        "View Forecast Reports",
+                        "ViewFavourite Forecast Reports",
                         style: TextStyle(color: iconColor, fontWeight: FontWeight.bold),
                       ),
                     ),
