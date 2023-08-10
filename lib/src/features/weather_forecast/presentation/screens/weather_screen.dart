@@ -57,7 +57,7 @@ class WeatherScreen extends StatelessWidget {
                   children: [
                     const Text(Language.lblStatistics, style: primaryTextStyle),
                     GestureDetector(
-                      onTap: () => Navigator.popAndPushNamed(context, RoutesList.forecastScreen),
+                      onTap: () => Navigator.pushNamed(context, RoutesList.forecastScreen),
                       child: const Text(Language.lblViewReport, style: secondaryTextStyle),
                     ),
                   ],
