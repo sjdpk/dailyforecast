@@ -1,4 +1,5 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/config/utils/datetime.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/locallocation.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/weather.dart';
@@ -33,7 +34,7 @@ class LocationtitleBookmarkWidget extends StatelessWidget {
         IconButton(
             onPressed: () async {
               final location = LocalLocationEntity(
-                name: weatherEntity.cityName ?? "Favourite Location",
+                name: weatherEntity.cityName ?? Language.lblFavLocation,
                 icon: weatherEntity.weatherIcon,
                 latitude: weatherEntity.lat!,
                 longitude: weatherEntity.lon!,

@@ -1,4 +1,5 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/location.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/location/location_bloc.dart';
@@ -25,7 +26,7 @@ class SearchLocationWidget extends StatelessWidget {
               prefixIcon: const Icon(Icons.search),
               contentPadding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
               border: InputBorder.none,
-              hintText: "Search Locations",
+              hintText: Language.lblSearchLocation,
               hintStyle: const TextStyle(color: primaryColor),
               suffixIcon: Visibility(
                 visible: searchCtr.text.isNotEmpty,

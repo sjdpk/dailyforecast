@@ -1,8 +1,10 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/favourite_location_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/image_widget.dart';
+import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/loader.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/locationtitle_bookmark_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/search_location_widget.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/statisticsdata_widget.dart';
@@ -19,14 +21,14 @@ class WeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<WeatherBloc>().add(GetWeatherEvents());
+    context.read<WeatherBloc>().add(const GetWeatherEvents());
 
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0),
       body: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoadingState) {
-            return Center(child: Image.asset("assets/icon/loading.gif"));
+            return const LoaderWidget();
           } else if (state is WeatherDoneState) {
             context.read<WeatherForecastBloc>().add(GetWeatherForecastEvents(locationId: state.weatherEntity.id!));
             return ListView(
@@ -54,11 +56,11 @@ class WeatherScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Statistics", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
+                    const Text(Language.lblStatistics, style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
                     GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeatherForeCastScreen())),
                       child: const Text(
-                        "View Forecast Reports",
+                        Language.lblViewReport,
                         style: TextStyle(color: iconColor, fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -70,18 +72,18 @@ class WeatherScreen extends StatelessWidget {
               ],
             );
           } else if (state is WeatherErrorState) {
-            if (state.message == "No Location Permission") return const LocationPermissonErrorWidget();
+            if (state.message == Language.lblNoLcnPermsnMsg) return const LocationPermissonErrorWidget();
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(state.message ?? "Something went wrong try again"),
+                  Text(state.message ?? Language.lblErrorMsg),
                   const SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
                       context.read<WeatherBloc>().add(const GetWeatherEvents(lat: 27.6545, lon: 85.6788));
                     },
-                    child: Text("Refresh Again!"),
+                    child: const Text(Language.lblRefresh),
                   )
                 ],
               ),

@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: "Daily Forecast",
+          title: appEnv.envConfig.applicatioName,
           theme: themeConfig.darkMode,
           home: WeatherScreen(),
         ),

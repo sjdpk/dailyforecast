@@ -1,4 +1,5 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/locallocation/local_location_bloc.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class FavouritesLocationWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              const Text("Favourites Location's", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
+              const Text(Language.lblFavLocation, style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
               const SizedBox(height: 10),
               SizedBox(
                 height: 90,

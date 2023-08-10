@@ -1,3 +1,4 @@
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/config/utils/locations.dart';
 import 'package:dailyforecast/src/core/network/data_state.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/weather.dart';
@@ -36,7 +37,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         emit(WeatherErrorState(dataState.error));
       }
     } else {
-      emit(const WeatherErrorState("No Location Permission"));
+      emit(const WeatherErrorState(Language.lblNoLcnPermsnMsg));
     }
   }
 }

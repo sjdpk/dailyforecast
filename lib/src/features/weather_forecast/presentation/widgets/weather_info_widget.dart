@@ -1,4 +1,5 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:flutter/material.dart';
 
 import 'temperature_widget.dart';
@@ -18,7 +19,7 @@ class WeatherInfoWidget extends StatelessWidget {
       children: [
         TemperatureWidget(deg: deg),
         Text(status ?? "", style: const TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
-        Text("Feels Like ${feelsDeg ?? deg}\u00B0", style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12)),
+        Text("${Language.lblFeelsLike} ${feelsDeg ?? deg}${Language.degreeSign}", style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12)),
       ],
     );
   }

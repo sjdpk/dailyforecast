@@ -1,4 +1,5 @@
 import 'package:dailyforecast/main.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -15,17 +16,18 @@ class LocationPermissonErrorWidget extends StatelessWidget {
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(appEnv.envConfig.applicatioName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+          const SizedBox(height: 10),
+          Text(appEnv.envConfig.applicatioName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
           SizedBox(height: size.height / 4),
           SearchLocationWidget(),
-          SizedBox(height: 30),
-          const Text("Search Location To Get Weather Detail's", style: TextStyle(fontWeight: FontWeight.bold)),
-          Spacer(),
+          const SizedBox(height: 30),
+          const Text(Language.lblSearchMsg, style: TextStyle(fontWeight: FontWeight.bold)),
+          const Spacer(),
           TextButton(
             onPressed: () async {
               await Geolocator.openLocationSettings();
             },
-            child: Text("Open Location Setting", style: TextStyle(fontWeight: FontWeight.bold)),
+            child: const Text(Language.lblLocationSetting, style: TextStyle(fontWeight: FontWeight.bold)),
           )
         ],
       ),

@@ -1,8 +1,10 @@
 import 'package:dailyforecast/src/config/constants/colors.dart';
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/config/utils/datetime.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/forecast_card_widget.dart';
+import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +17,7 @@ class WeatherForeCastScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: const Icon(Icons.arrow_back_ios, color: primaryColor)),
         title: const Text(
-          "Forecast Reports",
+          Language.lblForecastReport,
           style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: labelTextSize),
         ),
         backgroundColor: backgroundColor,
@@ -26,7 +28,7 @@ class WeatherForeCastScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Today", style: TextStyle(color: primaryColor)),
+              const Text(Language.lblToday, style: TextStyle(color: primaryColor)),
               Text(dateTimeUtils.formatDate(DateTime.now()), style: const TextStyle(color: primaryColor))
             ],
           ),
@@ -35,11 +37,11 @@ class WeatherForeCastScreen extends StatelessWidget {
             if (state is WeatherDoneState) {
               return ForeCastCardWidget(icon: state.weatherEntity.weatherIcon, deg: state.weatherEntity.temp!, location: state.weatherEntity.cityName ?? "", country: state.weatherEntity.country ?? "", status: state.weatherEntity.main ?? "");
             } else {
-              return const Text("Loading...");
+              return const Text(Language.lblLoading);
             }
           }),
           const SizedBox(height: 30),
-          const Text("Next 5 Days Forecast", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 16)),
+          const Text(Language.lbl5dayForecast, style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 10),
           BlocBuilder<WeatherForecastBloc, WeatherForecastState>(
             builder: (context, state) {
@@ -61,7 +63,7 @@ class WeatherForeCastScreen extends StatelessWidget {
                   },
                 );
               } else {
-                return const Text("Loading...");
+                return const LoaderWidget();
               }
             },
           ),

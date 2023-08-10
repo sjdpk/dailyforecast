@@ -1,3 +1,4 @@
+import 'package:dailyforecast/src/config/constants/language.dart';
 import 'package:dailyforecast/src/core/network/data_state.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/location.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/usecases/remote/getlocation.dart';
@@ -19,7 +20,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     if (locations is DataSucessState) {
       emit(LocationDoneState(locations.data!));
     } else if (locations is DataErrorState) {
-      emit(const LocationErrorState("some thing went wrong"));
+      emit(const LocationErrorState(Language.lblErrorMsg));
     }
   }
 }
