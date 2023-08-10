@@ -1,4 +1,6 @@
+import 'package:dailyforecast/src/config/routes/routes.dart';
 import 'package:dailyforecast/src/config/themes/themes.dart';
+import 'package:dailyforecast/src/config/utils/common.dart';
 import 'package:dailyforecast/src/core/env/base_env.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,6 @@ import 'src/features/weather_forecast/presentation/blocs/currentweather/weather_
 import 'src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/locallocation/local_location_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/location/location_bloc.dart';
-import 'src/features/weather_forecast/presentation/screens/weather_screen.dart';
 import 'injection_container.dart' as di;
 
 Environment appEnv = Environment();
@@ -21,7 +22,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox<LocalLocationDAO>(appEnv.envConfig.locationDb);
   await locationUtils.requestLocationPermission();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,17 +38,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<LocalLocationBloc>()),
       ],
       child: GestureDetector(
-        onTap: () {
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
-        },
+        onTap: () => commonUtils.hideKeyboard(context),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: appEnv.envConfig.applicatioName,
           theme: themeConfig.darkMode,
-          home: WeatherScreen(),
+          routes: Routes.routes,
         ),
       ),
     );
