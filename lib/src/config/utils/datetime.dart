@@ -1,5 +1,7 @@
 import 'package:dailyforecast/src/config/constants/calendars.dart';
 
+DateTimeUtils dateTimeUtils = DateTimeUtils();
+
 class DateTimeUtils {
   // @desc : return month name
   String getMonthName(int month) => months[month - 1];
