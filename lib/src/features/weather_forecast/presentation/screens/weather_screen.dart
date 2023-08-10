@@ -10,6 +10,8 @@ import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'forecast_screen.dart';
+
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
 
@@ -56,7 +58,13 @@ class WeatherScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text("Statistics", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
-                    GestureDetector(onTap: () {}, child: const Text("View Forecast Reports", style: TextStyle(color: iconColor, fontWeight: FontWeight.bold))),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeatherForeCastScreen())),
+                      child: const Text(
+                        "View Forecast Reports",
+                        style: TextStyle(color: iconColor, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
