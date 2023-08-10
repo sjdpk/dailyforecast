@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'injection_container.dart';
+import 'src/config/utils/locations.dart';
 import 'src/features/weather_forecast/data/data_source/local/dao.dart';
 import 'src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
@@ -19,6 +20,7 @@ void main() async {
   init();
   await Hive.initFlutter();
   await Hive.openBox<LocalLocationDAO>(appEnv.envConfig.locationDb);
+  await locationUtils.requestLocationPermission();
   runApp(MyApp());
 }
 

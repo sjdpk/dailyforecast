@@ -34,7 +34,7 @@ class SearchLocationWidget extends StatelessWidget {
                     searchCtr.clear();
                     context.read<LocationBloc>().add(const GetLocationEvent(query: ""));
                   },
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                 ),
               ),
             ),

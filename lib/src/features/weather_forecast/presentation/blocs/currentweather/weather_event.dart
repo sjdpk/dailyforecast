@@ -8,9 +8,9 @@ class WeatherEvent extends Equatable {
 }
 
 class GetWeatherEvents extends WeatherEvent {
-  final num lat;
-  final num lon;
-  const GetWeatherEvents({required this.lat, required this.lon});
+  final num? lat;
+  final num? lon;
+  const GetWeatherEvents({this.lat, this.lon});
 
   @override
   List<Object?> get props => [

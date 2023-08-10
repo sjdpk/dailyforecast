@@ -2,6 +2,7 @@ import 'package:dailyforecast/src/config/constants/colors.dart';
 import 'package:dailyforecast/src/config/utils/datetime.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets/temperature_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class WeatherForecastDataWidget extends StatelessWidget {
     return BlocBuilder<WeatherForecastBloc, WeatherForecastState>(
       builder: (context, state) {
         if (state is WeatherForecastLoadingState) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CupertinoActivityIndicator());
         } else if (state is WeatherForecastDoneState) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -11,6 +11,7 @@ import 'package:dailyforecast/src/features/weather_forecast/presentation/widgets
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widgets/errorlocpermission_widget.dart';
 import 'forecast_screen.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -18,16 +19,14 @@ class WeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO : change Location Latitude as per current location
-    // Demo lat and long for testing
-    context.read<WeatherBloc>().add(const GetWeatherEvents(lat: 27.6545, lon: 85.6788));
+    context.watch<WeatherBloc>().add(GetWeatherEvents());
 
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0),
       body: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: Image.asset("assets/icon/loading.gif"));
           } else if (state is WeatherDoneState) {
             context.read<WeatherForecastBloc>().add(GetWeatherForecastEvents(locationId: state.weatherEntity.id!));
             return ListView(
@@ -71,22 +70,20 @@ class WeatherScreen extends StatelessWidget {
               ],
             );
           } else if (state is WeatherErrorState) {
+            if (state.message == "No Location Permission") return const LocationPermissonErrorWidget();
             return Center(
-              child: Container(
-                color: secondaryColor.withOpacity(0.4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(state.message ?? "Something went wrong try again"),
-                    SizedBox(height: 10),
-                    TextButton(
-                      onPressed: () {
-                        context.read<WeatherBloc>().add(const GetWeatherEvents(lat: 27.6545, lon: 85.6788));
-                      },
-                      child: Text("Refresh Again!"),
-                    )
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(state.message ?? "Something went wrong try again"),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () {
+                      context.read<WeatherBloc>().add(const GetWeatherEvents(lat: 27.6545, lon: 85.6788));
+                    },
+                    child: Text("Refresh Again!"),
+                  )
+                ],
               ),
             );
           } else {
