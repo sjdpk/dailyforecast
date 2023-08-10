@@ -35,7 +35,7 @@ class WeatherScreen extends StatelessWidget {
               children: [
                 LocationtitleBookmarkWidget(weatherEntity: state.weatherEntity),
                 const SizedBox(height: 20),
-                const SearchLocationWidget(),
+                SearchLocationWidget(),
                 const SizedBox(height: 20),
                 WeatherInfoImageWidget(icon: state.weatherEntity.weatherIcon),
                 const SizedBox(height: 10),

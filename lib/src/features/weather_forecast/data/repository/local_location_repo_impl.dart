@@ -28,7 +28,8 @@ class LocalLocationRepositoryImpl implements LocalLocationRepository {
   Future<DataState<List<LocalLocationEntity>>> getAllLocalSavedLocations() async {
     try {
       final response = await _localDataSource.getAllLocalSavedLocations();
-      return DataSucessState(response);
+      final savedLocations = response.reversed.toList();
+      return DataSucessState(savedLocations);
     } catch (e) {
       rethrow;
     }
