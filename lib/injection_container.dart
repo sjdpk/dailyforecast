@@ -15,6 +15,7 @@ import 'src/features/weather_forecast/domain/usecases/remote/getweather_usecase.
 import 'src/features/weather_forecast/domain/usecases/remote/getweatherforecast_usecase.dart';
 import 'src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
+import 'src/features/weather_forecast/presentation/blocs/locallocation/local_location_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/location/location_bloc.dart';
 
 final sl = GetIt.instance;
@@ -26,7 +27,7 @@ void init() async {
   sl.registerFactory(() => WeatherBloc(sl()));
   sl.registerFactory(() => WeatherForecastBloc(sl()));
   sl.registerFactory(() => LocationBloc(sl()));
-  // sl.registerFactory(() => LocalLocationBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => LocalLocationBloc(sl(), sl(), sl()));
 
   // usecase
   sl.registerLazySingleton(() => CurrentWeatherUseCase(sl()));

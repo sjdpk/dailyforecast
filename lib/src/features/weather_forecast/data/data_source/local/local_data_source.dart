@@ -1,6 +1,7 @@
 import 'package:dailyforecast/main.dart';
 import 'package:dailyforecast/src/features/weather_forecast/data/models/locallocation_model.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'dao.dart';
 
@@ -17,6 +18,7 @@ class LocalLocationDataSourceImpl implements LocalLocationDataSource {
   @override
   Future<bool> initDb() async {
     try {
+      await Hive.initFlutter();
       Hive.registerAdapter(LocalLocationDAOAdapter());
       await Hive.openBox<LocalLocationDAO>(_kTaskBox);
       return true;

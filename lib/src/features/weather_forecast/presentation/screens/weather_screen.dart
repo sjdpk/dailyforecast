@@ -59,7 +59,7 @@ class WeatherScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WeatherForeCastScreen())),
                       child: const Text(
-                        "ViewFavourite Forecast Reports",
+                        "View Forecast Reports",
                         style: TextStyle(color: iconColor, fontWeight: FontWeight.bold),
                       ),
                     ),
