@@ -1,6 +1,6 @@
 import 'package:dailyforecast/src/core/network/data_state.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/entities/weather.dart';
-import 'package:dailyforecast/src/features/weather_forecast/domain/usecases/getweather_usecase.dart';
+import 'package:dailyforecast/src/features/weather_forecast/domain/usecases/remote/getweather_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

@@ -1,7 +1,7 @@
 import 'package:dailyforecast/src/core/network/data_state.dart';
 import 'package:dailyforecast/src/features/weather_forecast/domain/repository/weather_repo.dart';
 
-import '../entities/weather.dart';
+import '../../entities/weather.dart';
 
 class WeatherForecastListUseCase {
   final WeatherRepository _weatherRepository;

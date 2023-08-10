@@ -4,9 +4,9 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
 import 'src/features/weather_forecast/data/data_source/remote/remote_data_source.dart';
-import 'src/features/weather_forecast/domain/usecases/getlocation.dart';
-import 'src/features/weather_forecast/domain/usecases/getweather_usecase.dart';
-import 'src/features/weather_forecast/domain/usecases/getweatherforecast_usecase.dart';
+import 'src/features/weather_forecast/domain/usecases/remote/getlocation.dart';
+import 'src/features/weather_forecast/domain/usecases/remote/getweather_usecase.dart';
+import 'src/features/weather_forecast/domain/usecases/remote/getweatherforecast_usecase.dart';
 import 'src/features/weather_forecast/presentation/blocs/currentweather/weather_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/forecastweather/forecast_weather_bloc.dart';
 import 'src/features/weather_forecast/presentation/blocs/location/location_bloc.dart';
